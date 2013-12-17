@@ -29,9 +29,14 @@ module.exports = FileWriteStream;
 FileWriteStream.prototype._createFile = function() {
   // console.log('captured finish, creating file');
   this.file = new Blob(this._buffers);
+  this.emit('file', this.file);
 };
 
 FileWriteStream.prototype._write = function(chunk, encoding, callback) {
+  if (typeof chunk == 'string' && chunk === 'EOF') {
+    return this._createFile();
+  }
+
   // collect the chunks
   this._buffers.push(new Uint8Array(chunk));
   callback();

@@ -12,9 +12,13 @@ function upload(files) {
     var writer = new FileWriteStream();
 
     console.log('sending file');
-    new FileReadStream(queue.shift()).pipe(writer).on('finish', function() {
+    new FileReadStream(queue.shift()).pipe(writer).on('file', function() {
       console.log('file created: ', writer.file);
       img.src = detect('URL').createObjectURL(writer.file);
+
+      if (queue.length > 0) {
+        sendNext();
+      }
     });
   }
 
