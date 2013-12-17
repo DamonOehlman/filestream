@@ -6,7 +6,7 @@ var util = require('util');
 
 function FileWriteStream() {
   if (! (this instanceof FileWriteStream)) {
-    return new FileWriteStream(file);
+    return new FileWriteStream();
   }
 
   // inherit readable
