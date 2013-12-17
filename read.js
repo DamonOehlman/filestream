@@ -39,7 +39,7 @@ FileReadStream.prototype._read = function(bytes) {
     var done = reader.readyState === 2 && endOffset > availableBytes;
     var chunk;
 
-    console.log('checking bytes available, need: ' + endOffset + ', got: ' + availableBytes);
+    // console.log('checking bytes available, need: ' + endOffset + ', got: ' + availableBytes);
     if (availableBytes && (done || availableBytes > endOffset)) {
       // get the data chunk
       chunk = new Uint8Array(
@@ -52,7 +52,7 @@ FileReadStream.prototype._read = function(bytes) {
       stream._offset = startOffset + chunk.length;
 
       // send the chunk
-      console.log('sending chunk, ended: ', chunk.length === 0);
+      // console.log('sending chunk, ended: ', chunk.length === 0);
       stream._eof = chunk.length === 0;
       return stream.push(chunk.length > 0 ? new Buffer(chunk) : 'EOF');
     }
