@@ -3,6 +3,8 @@
 
 var Readable = require('stream').Readable;
 var util = require('util');
+var mime = require('./mime');
+
 
 function FileReadStream(file) {
   if (! (this instanceof FileReadStream)) {
@@ -17,6 +19,14 @@ function FileReadStream(file) {
   // save the read offset
   this._offset = 0;
   this._eof = false;
+
+  // initialise the metadata
+  this._metasent = false;
+  this._metadata = {
+    name: file.name,
+    size: file.size,
+    type: mime.lookup(file.name)
+  };
 
   // create the reader
   this.reader = new FileReader();
@@ -54,14 +64,15 @@ FileReadStream.prototype._read = function(bytes) {
       // send the chunk
       // console.log('sending chunk, ended: ', chunk.length === 0);
       stream._eof = chunk.length === 0;
-      return stream.push(chunk.length > 0 ? new Buffer(chunk) : 'EOF');
+      return stream.push(chunk.length > 0 ? new Buffer(chunk) : null);
     }
 
     stream.once('readable', checkBytes);
   }
 
-  if (this._eof) {
-    return this.push(null);
+  if (! this._metasent) {
+    this._metasent = true;
+    return this.push(this._metadata);
   }
 
   checkBytes();
