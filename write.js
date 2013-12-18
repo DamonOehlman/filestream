@@ -41,9 +41,16 @@ FileWriteStream.prototype._createFile = function() {
 };
 
 FileWriteStream.prototype._write = function(chunk, encoding, callback) {
+  var parts = typeof chunk == 'string' && chunk.split('|');
+
   // if this is the metadata line, then update our metadata
-  if (chunk && chunk.name) {
-    this.metadata = chunk;
+  if (parts && parts[0] === 'meta') {
+    try {
+      this.metadata = JSON.parse(parts[1]);
+    }
+    catch (e) {
+      this.emit('error', 'Could not deserialize metadata');
+    }
   }
   else if (chunk instanceof Buffer) {
     this._bytesreceived += chunk.length;

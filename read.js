@@ -72,7 +72,7 @@ FileReadStream.prototype._read = function(bytes) {
 
   if (! this._metasent) {
     this._metasent = true;
-    return this.push(this._metadata);
+    return this.push('meta|' + JSON.stringify(this._metadata));
   }
 
   checkBytes();
