@@ -3,7 +3,8 @@
 
 var Readable = require('stream').Readable;
 var util = require('util');
-var mime = require('./mime');
+var reExtension = /^.*\.(\w+)$/;
+var mime = require('mime-component');
 
 
 function FileReadStream(file) {
@@ -25,8 +26,10 @@ function FileReadStream(file) {
   this._metadata = {
     name: file.name,
     size: file.size,
-    type: mime.lookup(file.name)
+    type: mime.lookup(file.name.replace(reExtension, '$1'))
   };
+
+  console.log(file.name.replace(reExtension, '$1'));
 
   // create the reader
   this.reader = new FileReader();
