@@ -1,6 +1,6 @@
 {
   "name": "filestream",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
