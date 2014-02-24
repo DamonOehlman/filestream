@@ -47,6 +47,7 @@ FileWriteStream.prototype._createFile = function() {
 
 FileWriteStream.prototype._write = function(chunk, encoding, callback) {
   var parts = typeof chunk == 'string' && chunk.split('|');
+  var data = chunk instanceof Buffer ? new Uint8Array(chunk) : chunk;
 
   // if this is the metadata line, then update our metadata
   if (parts && parts[0] === 'meta') {
@@ -57,16 +58,15 @@ FileWriteStream.prototype._write = function(chunk, encoding, callback) {
       this.emit('error', 'Could not deserialize metadata');
     }
   }
-  else if (chunk instanceof Buffer) {
+
+  // if we have valid data, then process
+  if (data instanceof Uint8Array) {
     this._bytesreceived += chunk.length;
-    // console.log(this._bytesreceived, this.metadata.size)
+    this._buffers.push(chunk);
+  }
 
-    // collect the chunks
-    this._buffers.push(new Uint8Array(chunk));
-
-    if (this.metadata && this._bytesreceived >= this.metadata.size) {
-      this._createFile();
-    }
+  if (this.metadata && this._bytesreceived >= this.metadata.size) {
+    this._createFile();
   }
 
   callback();
