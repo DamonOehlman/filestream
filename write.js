@@ -4,9 +4,9 @@
 var Writable = require('stream').Writable;
 var util = require('util');
 
-function FileWriteStream() {
+function FileWriteStream(callback) {
   if (! (this instanceof FileWriteStream)) {
-    return new FileWriteStream();
+    return new FileWriteStream(callback);
   }
 
   // inherit readable
@@ -18,6 +18,7 @@ function FileWriteStream() {
   // create the internal buffers storage
   this._buffers = [];
   this._bytesreceived = 0;
+  this.callback = callback;
 }
 
 util.inherits(FileWriteStream, Writable);
@@ -32,6 +33,10 @@ FileWriteStream.prototype._createFile = function() {
   // currently getting illegal constructor errors when attempting
   // see: https://code.google.com/p/chromium/issues/detail?id=164933
   // also see spec: http://dev.w3.org/2006/webapi/FileAPI/#file-constructor
+  if (typeof this.callback == 'function') {
+    this.callback(blob, this.metadata);
+  }
+  
   this.emit('file', blob, this.metadata);
 
   // reset the buffers and metadata
