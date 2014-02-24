@@ -29,8 +29,6 @@ function FileReadStream(file) {
     type: mime.lookup(file.name.replace(reExtension, '$1'))
   };
 
-  console.log(file.name.replace(reExtension, '$1'));
-
   // create the reader
   this.reader = new FileReader();
   this.reader.onprogress = this._handleProgress.bind(this);
