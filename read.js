@@ -21,8 +21,9 @@ function FileReadStream(file, opts) {
   this._offset = 0;
   this._eof = false;
 
+  // if `opts.meta` is true, then emit the metadata in the stream
+  this._metasent = !opts.meta;
   // initialise the metadata
-  this._metasent = false;
   this._metadata = {
     name: file.name,
     size: file.size,
