@@ -5,17 +5,17 @@ var Readable = require('stream').Readable;
 var util = require('util');
 var reExtension = /^.*\.(\w+)$/;
 var mime = require('mime-component');
+var extend = require('extend.js');
 
-
-function FileReadStream(file) {
+function FileReadStream(file, opts) {
   if (! (this instanceof FileReadStream)) {
     return new FileReadStream(file);
   }
 
   // inherit readable
-  Readable.call(this, {
+  Readable.call(this, extend({
     objectMode: true
-  });
+  }, opts));
 
   // save the read offset
   this._offset = 0;
