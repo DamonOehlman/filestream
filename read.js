@@ -11,6 +11,7 @@ function FileReadStream(file, opts) {
   if (! (this instanceof FileReadStream)) {
     return new FileReadStream(file);
   }
+  opts = opts || {}
 
   // inherit readable
   Readable.call(this, extend({
