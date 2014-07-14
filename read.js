@@ -6,6 +6,7 @@ var util = require('util');
 var reExtension = /^.*\.(\w+)$/;
 var mime = require('mime-component');
 var extend = require('extend.js');
+var toBuffer = require('typedarray-to-buffer');
 
 function FileReadStream(file, opts) {
   if (! (this instanceof FileReadStream)) {
@@ -55,11 +56,11 @@ FileReadStream.prototype._read = function(bytes) {
     // console.log('checking bytes available, need: ' + endOffset + ', got: ' + availableBytes);
     if (availableBytes && (done || availableBytes > endOffset)) {
       // get the data chunk
-      chunk = new Uint8Array(
+      chunk = toBuffer(new Uint8Array(
         reader.result,
         startOffset,
         Math.min(bytes, reader.result.byteLength - startOffset)
-      );
+      ));
 
       // update the stream offset
       stream._offset = startOffset + chunk.length;
