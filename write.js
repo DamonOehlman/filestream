@@ -3,6 +3,7 @@
 
 var Writable = require('stream').Writable;
 var util = require('util');
+var toBuffer = require('typedarray-to-buffer');
 
 function FileWriteStream(callback) {
   if (! (this instanceof FileWriteStream)) {
@@ -36,7 +37,7 @@ FileWriteStream.prototype._createFile = function() {
   if (typeof this.callback == 'function') {
     this.callback(blob, this.metadata);
   }
-  
+
   this.emit('file', blob, this.metadata);
 
   // reset the buffers and metadata
@@ -47,7 +48,7 @@ FileWriteStream.prototype._createFile = function() {
 
 FileWriteStream.prototype._write = function(chunk, encoding, callback) {
   var parts = typeof chunk == 'string' && chunk.split('|');
-  var data = chunk instanceof Buffer ? new Uint8Array(chunk) : chunk;
+  var data = chunk instanceof Buffer ? chunk : toBuffer(chunk);
 
   // if this is the metadata line, then update our metadata
   if (parts && parts[0] === 'meta') {
@@ -60,7 +61,8 @@ FileWriteStream.prototype._write = function(chunk, encoding, callback) {
   }
 
   // if we have valid data, then process
-  if (data instanceof Uint8Array) {
+  if (Buffer.isBuffer(data)) {
+    console.log(data);
     this._bytesreceived += chunk.length;
     this._buffers.push(chunk);
   }
