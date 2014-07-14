@@ -10,7 +10,7 @@ var toBuffer = require('typedarray-to-buffer');
 
 function FileReadStream(file, opts) {
   if (! (this instanceof FileReadStream)) {
-    return new FileReadStream(file);
+    return new FileReadStream(file, opts);
   }
   opts = opts || {}
 
