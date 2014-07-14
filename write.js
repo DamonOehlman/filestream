@@ -3,18 +3,19 @@
 
 var Writable = require('stream').Writable;
 var util = require('util');
+var extend = require('extend.js');
 var toBuffer = require('typedarray-to-buffer');
 
-function FileWriteStream(callback) {
+function FileWriteStream(callback, opts) {
   if (! (this instanceof FileWriteStream)) {
-    return new FileWriteStream(callback);
+    return new FileWriteStream(callback, opts);
   }
 
   // inherit readable
-  Writable.call(this, {
+  Writable.call(this, extend({
     decodeStrings: false,
     objectMode: true
-  });
+  }, opts));
 
   // create the internal buffers storage
   this._buffers = [];
