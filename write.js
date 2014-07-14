@@ -63,7 +63,6 @@ FileWriteStream.prototype._write = function(chunk, encoding, callback) {
 
   // if we have valid data, then process
   if (Buffer.isBuffer(data)) {
-    console.log(data);
     this._bytesreceived += chunk.length;
     this._buffers.push(chunk);
   }
