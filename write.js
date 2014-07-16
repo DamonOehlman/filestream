@@ -49,7 +49,7 @@ FileWriteStream.prototype._createFile = function() {
 
 FileWriteStream.prototype._write = function(chunk, encoding, callback) {
   var parts = typeof chunk == 'string' && chunk.split('|');
-  var data = chunk instanceof Buffer ? chunk : toBuffer(chunk);
+  var data = Buffer.isBuffer(chunk) ? chunk : toBuffer(chunk);
 
   // if this is the metadata line, then update our metadata
   if (parts && parts[0] === 'meta') {
