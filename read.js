@@ -4,7 +4,6 @@
 var Readable = require('stream').Readable;
 var util = require('util');
 var reExtension = /^.*\.(\w+)$/;
-var mime = require('mime-component');
 var extend = require('extend.js');
 var toBuffer = require('typedarray-to-buffer');
 
@@ -29,7 +28,7 @@ function FileReadStream(file, opts) {
   this._metadata = {
     name: file.name,
     size: file.size,
-    type: mime.lookup(file.name.replace(reExtension, '$1'))
+    extension: file.name.replace(reExtension, '$1')
   };
 
   // create the reader

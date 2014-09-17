@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "extend.js": "0.0.1",
-    "mime-component": "0.0.1",
     "typedarray-to-buffer": "^1.0.3"
   }
 }
