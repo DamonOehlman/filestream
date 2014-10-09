@@ -14,7 +14,7 @@ function upload(files) {
     var next = queue.shift();
 
     console.log('sending file');
-    new FileReadStream(next, { meta: true }).pipe(writer).on('file', function(file) {
+    new FileReadStream(next, { meta: true, mime: require('mime-component') }).pipe(writer).on('file', function(file) {
       console.log('file created: ', file);
       img.src = detect('URL').createObjectURL(file);
       // video.src = detect('URL').createObjectURL(next);
