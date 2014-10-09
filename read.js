@@ -31,6 +31,11 @@ function FileReadStream(file, opts) {
     extension: file.name.replace(reExtension, '$1')
   };
 
+  // if we have a mime type registry, lookup mime type
+  if (opts.mime && typeof opts.mime.lookup == 'function') {
+    this._metadata.type = opts.mime.lookup(this._metadata.extension);
+  }
+
   // create the reader
   this.reader = new FileReader();
   this.reader.onprogress = this._handleProgress.bind(this);
