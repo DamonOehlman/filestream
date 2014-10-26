@@ -72,7 +72,7 @@ FileReadStream.prototype._read = function(bytes) {
       // send the chunk
       // console.log('sending chunk, ended: ', chunk.length === 0);
       stream._eof = chunk.length === 0;
-      return stream.push(chunk.length > 0 ? new Buffer(chunk) : null);
+      return stream.push(chunk.length > 0 ? chunk : null);
     }
 
     stream.once('readable', checkBytes);
