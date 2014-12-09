@@ -17,6 +17,9 @@ function FileWriteStream(callback, opts) {
     objectMode: true
   }, opts));
 
+  // when the stream finishes create a file
+  this.on('finish', this._createFile.bind(this));
+
   // create the internal buffers storage
   this._buffers = [];
   this._bytesreceived = 0;
@@ -27,7 +30,16 @@ util.inherits(FileWriteStream, Writable);
 module.exports = FileWriteStream;
 
 FileWriteStream.prototype._createFile = function() {
-  var blob = new Blob(this._buffers, {
+  var blob;
+
+  // if we have no buffers, then abort any processing
+  if (this._buffers.length === 0) {
+    return;
+
+  }
+
+  // create the new blob
+  blob = new Blob(this._buffers, {
     type: this.metadata && this.metadata.type
   });
 
