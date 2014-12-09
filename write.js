@@ -59,6 +59,8 @@ FileWriteStream.prototype._write = function(chunk, encoding, callback) {
     catch (e) {
       this.emit('error', 'Could not deserialize metadata');
     }
+
+    return callback();
   }
 
   // if we have valid data, then process
