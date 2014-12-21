@@ -43,15 +43,11 @@ FileWriteStream.prototype._createFile = function() {
     type: this.metadata && this.metadata.type
   });
 
-  // TODO: create a File instead of sending the blob...
-  // currently getting illegal constructor errors when attempting
-  // see: https://code.google.com/p/chromium/issues/detail?id=164933
-  // also see spec: http://dev.w3.org/2006/webapi/FileAPI/#file-constructor
   if (typeof this.callback == 'function') {
-    this.callback(blob, this.metadata);
+    this.callback(new File([blob], this.metadata.name), this.metadata);
   }
 
-  this.emit('file', blob, this.metadata);
+  this.emit('file', new File([blob], this.metadata.name), this.metadata);
 
   // reset the buffers and metadata
   this._buffers = [];
