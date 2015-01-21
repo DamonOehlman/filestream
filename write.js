@@ -30,24 +30,20 @@ util.inherits(FileWriteStream, Writable);
 module.exports = FileWriteStream;
 
 FileWriteStream.prototype._createFile = function() {
-  var blob;
+  var file;
 
   // if we have no buffers, then abort any processing
   if (this._buffers.length === 0) {
     return;
-
   }
 
-  // create the new blob
-  blob = new Blob(this._buffers, {
-    type: this.metadata && this.metadata.type
-  });
-
+  // create the new file
+  file = new File([new Blob(this._buffers)], (this.metadata || {}).name, this.metadata);
   if (typeof this.callback == 'function') {
-    this.callback(new File([blob], this.metadata.name), this.metadata);
+    this.callback(file, this.metadata);
   }
 
-  this.emit('file', new File([blob], this.metadata.name), this.metadata);
+  this.emit('file', file, this.metadata);
 
   // reset the buffers and metadata
   this._buffers = [];
