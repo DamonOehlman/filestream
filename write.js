@@ -11,7 +11,7 @@ function FileWriteStream(callback, opts) {
     return new FileWriteStream(callback, opts);
   }
 
-  // inherit readable
+  // inherit writable
   Writable.call(this, extend({
     decodeStrings: false,
     objectMode: true
