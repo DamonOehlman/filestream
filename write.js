@@ -38,7 +38,12 @@ FileWriteStream.prototype._createFile = function() {
   }
 
   // create the new file
-  file = new File([new Blob(this._buffers)], (this.metadata || {}).name, this.metadata);
+  file = this.metadata ?
+    // if we have metadata, then create a file with name and metadata
+    new File([new Blob(this._buffers)], this.metadata.name, this.metadata) :
+    // otherwise, just create the file
+    new File([new Blob(this._buffers)], '');
+
   if (typeof this.callback == 'function') {
     this.callback(file, this.metadata);
   }
