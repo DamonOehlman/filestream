@@ -1,8 +1,5 @@
-/* jshint node: true */
-'use strict';
-
 var Readable = require('stream').Readable;
-var util = require('util');
+var inherits = require('inherits');
 var reExtension = /^.*\.(\w+)$/;
 var extend = require('extend.js');
 var toBuffer = require('typedarray-to-buffer');
@@ -40,7 +37,7 @@ function FileReadStream(file, opts) {
   });
 }
 
-util.inherits(FileReadStream, Readable);
+inherits(FileReadStream, Readable);
 module.exports = FileReadStream;
 
 FileReadStream.prototype._generateHeaderBlocks = function(file, opts, callback) {

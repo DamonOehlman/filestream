@@ -1,8 +1,5 @@
-/* jshint node: true */
-'use strict';
-
 var Writable = require('stream').Writable;
-var util = require('util');
+var inherits = require('inherits');
 var extend = require('extend.js');
 var toBuffer = require('typedarray-to-buffer');
 
@@ -26,7 +23,7 @@ function FileWriteStream(callback, opts) {
   this.callback = callback;
 }
 
-util.inherits(FileWriteStream, Writable);
+inherits(FileWriteStream, Writable);
 module.exports = FileWriteStream;
 
 FileWriteStream.prototype._createFile = function() {
