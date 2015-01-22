@@ -34,7 +34,7 @@ function upload(files) {
     var next = queue.shift();
 
     console.log('sending file');
-    new FileReadStream(next, { meta: true }).pipe(writer).on('file', function(file) {
+    new FileReadStream(next).pipe(writer).on('file', function(file) {
       console.log('file created: ', file);
       img.src = detect('URL').createObjectURL(file);
       // video.src = detect('URL').createObjectURL(next);
@@ -60,7 +60,7 @@ document.body.appendChild(video);
 
 ### MIT
 
-Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2015 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
