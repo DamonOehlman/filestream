@@ -11,7 +11,7 @@ function FileReadStream(file, opts) {
   opts = opts || {};
 
   // inherit readable
-  Readable.call(this, opts));
+  Readable.call(this, opts);
 
   // save the read offset
   this._offset = 0;
