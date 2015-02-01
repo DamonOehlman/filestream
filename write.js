@@ -9,10 +9,7 @@ function FileWriteStream(callback, opts) {
   }
 
   // inherit writable
-  Writable.call(this, extend({
-    decodeStrings: false,
-    objectMode: true
-  }, opts));
+  Writable.call(this, extend({ decodeStrings: false }, opts));
 
   // when the stream finishes create a file
   this.on('finish', this._generateFile.bind(this));
