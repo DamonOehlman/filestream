@@ -1,7 +1,6 @@
 var Readable = require('stream').Readable;
 var inherits = require('inherits');
 var reExtension = /^.*\.(\w+)$/;
-var extend = require('extend.js');
 var toBuffer = require('typedarray-to-buffer');
 
 function FileReadStream(file, opts) {
@@ -12,9 +11,7 @@ function FileReadStream(file, opts) {
   opts = opts || {};
 
   // inherit readable
-  Readable.call(this, extend({
-    objectMode: true
-  }, opts));
+  Readable.call(this, opts));
 
   // save the read offset
   this._offset = 0;
