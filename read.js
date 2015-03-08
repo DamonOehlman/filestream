@@ -2,6 +2,8 @@ var Readable = require('stream').Readable;
 var inherits = require('inherits');
 var reExtension = /^.*\.(\w+)$/;
 var toBuffer = require('typedarray-to-buffer');
+var detect = require('feature/detect');
+var Reader = detect('FileReader') || detect('FileReaderSync');
 
 function FileReadStream(file, opts) {
   var readStream = this;
@@ -18,7 +20,7 @@ function FileReadStream(file, opts) {
   this._eof = false;
 
   // create the reader
-  this.reader = new FileReader();
+  this.reader = new Reader();
   this.reader.onprogress = this._handleProgress.bind(this);
   this.reader.onload = this._handleLoad.bind(this);
 
