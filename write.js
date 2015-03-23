@@ -18,6 +18,7 @@ function FileWriteStream(callback, opts) {
   this._buffers = [];
   this._bytesreceived = 0;
   this.callback = callback;
+  this.type = (opts || {}).type;
 }
 
 inherits(FileWriteStream, Writable);
@@ -29,7 +30,9 @@ FileWriteStream.prototype._createFile = function() {
     return;
   }
 
-  return new File([new Blob(this._buffers)], '');
+  return new File(this._buffers, '', {
+    type: this.type || ''
+  });
 };
 
 FileWriteStream.prototype._generateFile = function() {
