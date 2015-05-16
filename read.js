@@ -18,7 +18,7 @@ function FileReadStream(file, opts) {
   this._ready = false;
   this._file = file;
   this._size = file.size;
-  this._chunkSize = opts.chunkSize || Math.max(this._size / 1000, 500 * 1024);
+  this._chunkSize = opts.chunkSize || Math.max(this._size / 1000, 200 * 1024);
 
   // create the reader
   this.reader = new FileReader();
