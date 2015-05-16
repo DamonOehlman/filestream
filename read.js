@@ -61,7 +61,11 @@ FileReadStream.prototype._read = function() {
   var endOffset = this._offset + this._chunkSize;
   if (endOffset > this._size) endOffset = this._size;
 
-  if (startOffset === this._size) return this.push(null);
+  if (startOffset === this._size) {
+    this.destroy();
+    this.push(null);
+    return;
+  }
 
   reader.onload = function() {
     // update the stream offset
@@ -76,3 +80,13 @@ FileReadStream.prototype._read = function() {
 
   reader.readAsArrayBuffer(this._file.slice(startOffset, endOffset));
 };
+
+FileReadStream.prototype.destroy = function() {
+  this._file = null;
+  if (this.reader) {
+    this.reader.onload = null;
+    this.reader.onerror = null;
+    this.reader.abort();
+  }
+  this.reader = null;
+}
