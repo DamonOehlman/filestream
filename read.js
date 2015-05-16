@@ -86,7 +86,7 @@ FileReadStream.prototype.destroy = function() {
   if (this.reader) {
     this.reader.onload = null;
     this.reader.onerror = null;
-    this.reader.abort();
+    try { this.reader.abort(); } catch (e) {};
   }
   this.reader = null;
 }
