@@ -4,7 +4,8 @@
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "zuul -- test/*.js",
+    "test-local": "zuul --local -- test/*.js",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
@@ -25,7 +26,9 @@
   "devDependencies": {
     "crel": "^2.1.8",
     "drag-and-drop-files": "0.0.1",
-    "feature": "^1.0.0"
+    "feature": "^1.0.0",
+    "tape": "^4.0.0",
+    "zuul": "^3.0.0"
   },
   "dependencies": {
     "extend.js": "0.0.2",
