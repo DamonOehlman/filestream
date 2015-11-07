@@ -69,6 +69,7 @@ FileWriteStream.prototype._write = function(chunk, encoding, callback) {
     if (processed) {
       writeStream._bytesreceived += processed.length;
       writeStream._buffers.push(processed);
+      writeStream.emit('progress', writeStream._bytesreceived);
     }
 
     callback();
