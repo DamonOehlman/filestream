@@ -1,6 +1,6 @@
 var Writable = require('stream').Writable;
 var inherits = require('inherits');
-var extend = require('extend.js');
+var extend = require('xtend');
 var toBuffer = require('typedarray-to-buffer');
 
 function FileWriteStream(callback, opts) {
