@@ -1,4 +1,4 @@
-var Writable = require('stream').Writable;
+var Writable = require('readable-stream').Writable;
 var inherits = require('inherits');
 var extend = require('xtend');
 var toBuffer = require('typedarray-to-buffer');

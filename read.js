@@ -1,4 +1,4 @@
-var Readable = require('stream').Readable;
+var Readable = require('readable-stream').Readable;
 var inherits = require('inherits');
 var reExtension = /^.*\.(\w+)$/;
 var toBuffer = require('typedarray-to-buffer');
