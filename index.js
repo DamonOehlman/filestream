@@ -1,5 +1,5 @@
 /* jshint node: true */
-'use strict';
+'use strict'
 
 /**
   # filestream
@@ -19,5 +19,5 @@
   <<< examples/drag-n-drop.js
 **/
 
-exports.read = require('./read');
-exports.write = require('./write');
+exports.read = require('./read')
+exports.write = require('./write')
