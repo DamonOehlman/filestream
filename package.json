@@ -31,7 +31,7 @@
     "zuul": "^3.12.0"
   },
   "dependencies": {
-    "readable-stream": "^3.0.3",
+    "readable-stream": "^3.4.0",
     "typedarray-to-buffer": "^3.0.0"
   }
 }
