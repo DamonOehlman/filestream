@@ -1,3 +1,5 @@
+/* global File */
+
 const { Writable } = require('readable-stream')
 const toBuffer = require('typedarray-to-buffer')
 

@@ -1,3 +1,5 @@
+/* global Blob */
+
 var FileReadStream = require('../').read
 var test = require('tape')
 
@@ -16,7 +18,7 @@ test('read stream (300MB blob)', function (t) {
 function testReadStream (t, size) {
   t.plan(1)
   var data = Buffer.alloc(size).fill('abc')
-  var blob = new Blob([ data.buffer ])
+  var blob = new Blob([data.buffer])
 
   var stream = new FileReadStream(blob)
   stream.on('error', function (err) {

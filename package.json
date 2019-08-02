@@ -4,7 +4,7 @@
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
-    "test": "airtap -- test/*.js",
+    "test": "standard && airtap -- test/*.js",
     "test-local": "airtap --local -- test/*.js",
     "gendocs": "gendocs > README.md"
   },
@@ -28,6 +28,7 @@
     "crel": "^4.0.1",
     "drag-and-drop-files": "0.0.1",
     "feature": "^1.0.1",
+    "standard": "^13.1.0",
     "tape": "^4.9.1"
   },
   "dependencies": {

@@ -1,3 +1,5 @@
+/* global FileReader */
+
 const { Readable } = require('readable-stream')
 const toBuffer = require('typedarray-to-buffer')
 
