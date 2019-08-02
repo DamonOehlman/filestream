@@ -3,7 +3,7 @@ const toBuffer = require('typedarray-to-buffer')
 
 class FileReadStream extends Readable {
   constructor (file, opts = {}) {
-    super()
+    super(opts)
 
     // save the read offset
     this._offset = 0
