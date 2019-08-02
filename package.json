@@ -4,8 +4,8 @@
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
-    "test": "zuul -- test/*.js",
-    "test-local": "zuul --local -- test/*.js",
+    "test": "airtap -- test/*.js",
+    "test-local": "airtap --local -- test/*.js",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
@@ -24,11 +24,11 @@
   },
   "homepage": "https://github.com/DamonOehlman/filestream",
   "devDependencies": {
+    "airtap": "^2.0.3",
     "crel": "^3.1.0",
     "drag-and-drop-files": "0.0.1",
     "feature": "^1.0.1",
     "tape": "^4.9.1",
-    "zuul": "^3.12.0"
   },
   "dependencies": {
     "readable-stream": "^3.4.0",

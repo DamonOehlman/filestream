@@ -1,4 +1,4 @@
-ui: tape
+loopback: airtap.local
 browsers:
   - name: chrome
     version: latest
