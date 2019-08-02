@@ -25,7 +25,7 @@
   "homepage": "https://github.com/DamonOehlman/filestream",
   "devDependencies": {
     "airtap": "^2.0.3",
-    "crel": "^3.1.0",
+    "crel": "^4.0.1",
     "drag-and-drop-files": "0.0.1",
     "feature": "^1.0.1",
     "tape": "^4.9.1"
