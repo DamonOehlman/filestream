@@ -4,6 +4,7 @@
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir .",
     "test": "standard && airtap -- test/*.js",
     "test-local": "airtap --local -- test/*.js",
     "gendocs": "gendocs > README.md"
@@ -24,6 +25,10 @@
   },
   "homepage": "https://github.com/DamonOehlman/filestream",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "airtap": "^2.0.3",
     "crel": "^4.0.1",
     "drag-and-drop-files": "0.0.1",
@@ -32,6 +37,7 @@
     "tape": "^4.9.1"
   },
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
     "readable-stream": "^3.4.0",
     "typedarray-to-buffer": "^3.0.0"
   }
