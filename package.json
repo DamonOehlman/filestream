@@ -4,7 +4,9 @@
   "description": "W3C File Reader API streaming interfaces",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf *.js",
     "build": "babel src --out-dir .",
+    "prepublish": "npm run clean && npm run build",
     "test": "standard && airtap -- test/*.js",
     "test-local": "airtap --local -- test/*.js",
     "gendocs": "gendocs > README.md"
@@ -33,6 +35,7 @@
     "crel": "^4.0.1",
     "drag-and-drop-files": "0.0.1",
     "feature": "^1.0.1",
+    "rimraf": "^2.6.3",
     "standard": "^13.1.0",
     "tape": "^4.9.1"
   },
