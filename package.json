@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf *.js",
     "build": "babel src --out-dir .",
-    "prepublish": "npm run clean && npm run build",
+    "prepare": "npm run clean && npm run build",
     "test": "standard && airtap -- test/*.js",
     "test-local": "airtap --local -- test/*.js",
     "gendocs": "gendocs > README.md"
