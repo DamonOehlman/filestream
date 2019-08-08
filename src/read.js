@@ -1,9 +1,7 @@
-
+/* global FileReader */
 
 const { Readable } = require('readable-stream')
 const toBuffer = require('typedarray-to-buffer')
-
-console.log("hello there")
 
 class FileReadStream extends Readable {
   constructor (file, opts = {}) {
