@@ -11,6 +11,10 @@ A streaming implementation for working with File objects in the browser.
 
 Because the implementations that I found really didn't cut the mustard :/
 
+## IE11 Support
+
+For usage with Internet Explorer 11, use a 4.x release of `filestream`.
+
 ## Example Usage
 
 Displayed below is an example that uses simple file drag and drop.  Rather
