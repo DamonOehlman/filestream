@@ -19,5 +19,5 @@
   <<< examples/drag-n-drop.js
 **/
 
-exports.read = require('./read')
-exports.write = require('./write')
+exports.read = require('./read.js')
+exports.write = require('./write.js')

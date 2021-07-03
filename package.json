@@ -24,15 +24,9 @@
   },
   "homepage": "https://github.com/DamonOehlman/filestream",
   "devDependencies": {
-    "airtap": "^2.0.3",
-    "crel": "^4.0.1",
-    "drag-and-drop-files": "0.0.1",
-    "feature": "^1.0.1",
-    "standard": "^13.1.0",
-    "tape": "^4.9.1"
-  },
-  "dependencies": {
-    "readable-stream": "^3.4.0",
-    "typedarray-to-buffer": "^3.0.0"
+    "airtap": "^4.0.3",
+    "airtap-manual": "^1.0.0",
+    "standard": "^16.0.3",
+    "tape": "^5.2.2"
   }
 }

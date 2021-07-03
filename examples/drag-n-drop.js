@@ -1,17 +1,17 @@
-var crel = require('crel')
-var detect = require('feature/detect')
-var dnd = require('drag-and-drop-files')
-var img = crel('img')
-var video = crel('video', { autoplay: true })
-var FileReadStream = require('../read')
-var FileWriteStream = require('../write')
+const crel = require('crel')
+const detect = require('feature/detect')
+const dnd = require('drag-and-drop-files')
+const img = crel('img')
+const video = crel('video', { autoplay: true })
+const FileReadStream = require('../read.js')
+const FileWriteStream = require('../write.js')
 
 function upload (files) {
-  var queue = [].concat(files)
+  const queue = [].concat(files)
 
   function sendNext () {
-    var writer = new FileWriteStream()
-    var next = queue.shift()
+    const writer = new FileWriteStream()
+    const next = queue.shift()
 
     console.log('sending file')
     new FileReadStream(next).pipe(writer).on('file', function (file) {
