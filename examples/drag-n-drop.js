@@ -3,8 +3,8 @@ const detect = require('feature/detect')
 const dnd = require('drag-and-drop-files')
 const img = crel('img')
 const video = crel('video', { autoplay: true })
-const FileReadStream = require('../read')
-const FileWriteStream = require('../write')
+const FileReadStream = require('../read.js')
+const FileWriteStream = require('../write.js')
 
 function upload (files) {
   const queue = [].concat(files)

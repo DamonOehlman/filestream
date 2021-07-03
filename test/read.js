@@ -1,7 +1,7 @@
 /* global Blob */
 
-const FileReadStream = require('../').read
 const test = require('tape')
+const FileReadStream = require('../read.js')
 
 test('read stream (3MB blob)', function (t) {
   testReadStream(t, 3 * 1000 * 1000)
