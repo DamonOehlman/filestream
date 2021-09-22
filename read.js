@@ -10,9 +10,11 @@ class FileReadStream extends Readable {
     this._offset = 0
     this._blob = blob
     this._chunkSize = opts.chunkSize || Math.max(this._blob.size / 1000, 200 * 1024)
+    this.destroyed = false
   }
 
   _read () {
+    if (this.destroyed) return null
     const startOffset = this._offset
     let endOffset = this._offset + this._chunkSize
     if (endOffset > this._blob.size) endOffset = this._blob.size
@@ -32,6 +34,7 @@ class FileReadStream extends Readable {
   }
 
   destroy () {
+    this.destroyed = true
     this._blob = null
   }
 }
